@@ -1,6 +1,6 @@
 package com.ifrs.moviebox.dao;
 
-import com.ifrs.moviebox.models.Genres;
+import com.ifrs.moviebox.models.Movies;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -8,36 +8,36 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-public class GenreDAO {
+public class MovieDAO {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
     EntityManager em = emf.createEntityManager();
 
-    public GenreDAO() {}
+    public MovieDAO() {}
 
-    public void create(Genres genre) {
+    public void create(Movies movie) {
         em.getTransaction().begin();
-        em.persist(genre);
+        em.persist(movie);
         em.getTransaction().commit();
     }
 
-    public Genres getById(long id) {
-        return em.find(Genres.class, id);
+    public Movies getById(long id) {
+        return em.find(Movies.class, id);
     }
 
-    public List<Genres> getAll() {
-        TypedQuery<Genres> query = em.createQuery("SELECT g FROM Genres g", Genres.class);
+    public List<Movies> getAll() {
+        TypedQuery<Movies> query = em.createQuery("SELECT g FROM Movies g", Movies.class);
         return query.getResultList();
     }
 
-    public void update(Genres genre) {
+    public void update(Movies movie) {
         em.getTransaction().begin();
-        em.merge(genre);
+        em.merge(movie);
         em.getTransaction().commit();
     }
 
-    public void delete(Genres genre) {
+    public void delete(Movies movie) {
         em.getTransaction().begin();
-        em.remove(genre);
+        em.remove(movie);
         em.getTransaction().commit();
     }
 }
