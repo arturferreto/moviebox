@@ -1,29 +1,29 @@
-package entity;
+package com.ifrs.moviebox.models;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "movie_streaming", schema = "public", catalog = "")
-public class MovieStreamingEntity {
+public class MovieStreaming {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private long id;
     @Basic
-    @Column(name = "movie_id")
+    @Column(name = "movie_id", insertable = false, updatable = false)
     private long movieId;
     @Basic
-    @Column(name = "streaming_id")
+    @Column(name = "streaming_id", insertable = false, updatable = false)
     private long streamingId;
     @Basic
     @Column(name = "rentable")
     private byte rentable;
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id", nullable = false)
-    private MoviesEntity moviesByMovieId;
+    private Movies moviesByMovieId;
     @ManyToOne
     @JoinColumn(name = "streaming_id", referencedColumnName = "id", nullable = false)
-    private StreamingsEntity streamingsByStreamingId;
+    private Streamings streamingsByStreamingId;
 
     public long getId() {
         return id;
@@ -62,7 +62,7 @@ public class MovieStreamingEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MovieStreamingEntity that = (MovieStreamingEntity) o;
+        MovieStreaming that = (MovieStreaming) o;
 
         if (id != that.id) return false;
         if (movieId != that.movieId) return false;
@@ -81,19 +81,19 @@ public class MovieStreamingEntity {
         return result;
     }
 
-    public MoviesEntity getMoviesByMovieId() {
+    public Movies getMoviesByMovieId() {
         return moviesByMovieId;
     }
 
-    public void setMoviesByMovieId(MoviesEntity moviesByMovieId) {
+    public void setMoviesByMovieId(Movies moviesByMovieId) {
         this.moviesByMovieId = moviesByMovieId;
     }
 
-    public StreamingsEntity getStreamingsByStreamingId() {
+    public Streamings getStreamingsByStreamingId() {
         return streamingsByStreamingId;
     }
 
-    public void setStreamingsByStreamingId(StreamingsEntity streamingsByStreamingId) {
+    public void setStreamingsByStreamingId(Streamings streamingsByStreamingId) {
         this.streamingsByStreamingId = streamingsByStreamingId;
     }
 }

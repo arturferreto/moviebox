@@ -1,4 +1,4 @@
-package entity;
+package com.ifrs.moviebox.models;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "movies", schema = "public", catalog = "")
-public class MoviesEntity {
+public class Movies {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -15,18 +15,18 @@ public class MoviesEntity {
     @Column(name = "name")
     private String name;
     @Basic
-    @Column(name = "genre_id")
+    @Column(name = "genre_id", insertable = false, updatable = false)
     private long genreId;
     @Basic
     @Column(name = "watchlist")
     private byte watchlist;
     @OneToMany(mappedBy = "moviesByMovieId")
-    private Collection<MovieStreamingEntity> movieStreamingsById;
+    private Collection<MovieStreaming> movieStreamingsById;
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id", nullable = false)
-    private GenresEntity genresByGenreId;
+    private Genres genresByGenreId;
     @OneToMany(mappedBy = "moviesByMovieId")
-    private Collection<WatchedEntity> watchedsById;
+    private Collection<Watched> watchedsById;
 
     public long getId() {
         return id;
@@ -65,7 +65,7 @@ public class MoviesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MoviesEntity that = (MoviesEntity) o;
+        Movies that = (Movies) o;
 
         if (id != that.id) return false;
         if (genreId != that.genreId) return false;
@@ -84,27 +84,27 @@ public class MoviesEntity {
         return result;
     }
 
-    public Collection<MovieStreamingEntity> getMovieStreamingsById() {
+    public Collection<MovieStreaming> getMovieStreamingsById() {
         return movieStreamingsById;
     }
 
-    public void setMovieStreamingsById(Collection<MovieStreamingEntity> movieStreamingsById) {
+    public void setMovieStreamingsById(Collection<MovieStreaming> movieStreamingsById) {
         this.movieStreamingsById = movieStreamingsById;
     }
 
-    public GenresEntity getGenresByGenreId() {
+    public Genres getGenresByGenreId() {
         return genresByGenreId;
     }
 
-    public void setGenresByGenreId(GenresEntity genresByGenreId) {
+    public void setGenresByGenreId(Genres genresByGenreId) {
         this.genresByGenreId = genresByGenreId;
     }
 
-    public Collection<WatchedEntity> getWatchedsById() {
+    public Collection<Watched> getWatchedsById() {
         return watchedsById;
     }
 
-    public void setWatchedsById(Collection<WatchedEntity> watchedsById) {
+    public void setWatchedsById(Collection<Watched> watchedsById) {
         this.watchedsById = watchedsById;
     }
 }

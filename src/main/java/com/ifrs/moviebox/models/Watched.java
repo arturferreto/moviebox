@@ -1,16 +1,16 @@
-package entity;
+package com.ifrs.moviebox.models;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "watched", schema = "public", catalog = "")
-public class WatchedEntity {
+public class Watched {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private long id;
     @Basic
-    @Column(name = "movie_id")
+    @Column(name = "movie_id", insertable = false, updatable = false)
     private long movieId;
     @Basic
     @Column(name = "rating")
@@ -23,7 +23,7 @@ public class WatchedEntity {
     private byte favorite;
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id", nullable = false)
-    private MoviesEntity moviesByMovieId;
+    private Movies moviesByMovieId;
 
     public long getId() {
         return id;
@@ -70,7 +70,7 @@ public class WatchedEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        WatchedEntity that = (WatchedEntity) o;
+        Watched that = (Watched) o;
 
         if (id != that.id) return false;
         if (movieId != that.movieId) return false;
@@ -91,11 +91,11 @@ public class WatchedEntity {
         return result;
     }
 
-    public MoviesEntity getMoviesByMovieId() {
+    public Movies getMoviesByMovieId() {
         return moviesByMovieId;
     }
 
-    public void setMoviesByMovieId(MoviesEntity moviesByMovieId) {
+    public void setMoviesByMovieId(Movies moviesByMovieId) {
         this.moviesByMovieId = moviesByMovieId;
     }
 }

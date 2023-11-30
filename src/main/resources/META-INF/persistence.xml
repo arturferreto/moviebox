@@ -5,11 +5,11 @@
              version="3.0">
     <persistence-unit name="default">
 
-        <class>entity.GenresEntity</class>
-        <class>entity.MovieStreamingEntity</class>
-        <class>entity.MoviesEntity</class>
-        <class>entity.StreamingsEntity</class>
-        <class>entity.WatchedEntity</class>
+        <class>com.ifrs.moviebox.models.Genres</class>
+        <class>com.ifrs.moviebox.models.MovieStreaming</class>
+        <class>com.ifrs.moviebox.models.Movies</class>
+        <class>com.ifrs.moviebox.models.Streamings</class>
+        <class>com.ifrs.moviebox.models.Watched</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/public"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

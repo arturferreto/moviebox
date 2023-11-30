@@ -1,4 +1,4 @@
-package entity;
+package com.ifrs.moviebox.models;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "streamings", schema = "public", catalog = "")
-public class StreamingsEntity {
+public class Streamings {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -15,7 +15,7 @@ public class StreamingsEntity {
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "streamingsByStreamingId")
-    private Collection<MovieStreamingEntity> movieStreamingsById;
+    private Collection<MovieStreaming> movieStreamingsById;
 
     public long getId() {
         return id;
@@ -38,7 +38,7 @@ public class StreamingsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StreamingsEntity that = (StreamingsEntity) o;
+        Streamings that = (Streamings) o;
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
@@ -53,11 +53,11 @@ public class StreamingsEntity {
         return result;
     }
 
-    public Collection<MovieStreamingEntity> getMovieStreamingsById() {
+    public Collection<MovieStreaming> getMovieStreamingsById() {
         return movieStreamingsById;
     }
 
-    public void setMovieStreamingsById(Collection<MovieStreamingEntity> movieStreamingsById) {
+    public void setMovieStreamingsById(Collection<MovieStreaming> movieStreamingsById) {
         this.movieStreamingsById = movieStreamingsById;
     }
 }
