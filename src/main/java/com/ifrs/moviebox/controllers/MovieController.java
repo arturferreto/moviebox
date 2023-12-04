@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "movieController", value = "/filmes")
+@WebServlet(urlPatterns = "/filmes")
 public class MovieController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -20,10 +20,14 @@ public class MovieController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        List<Movies> movies = dao.getAll();
+        String params = request.getParameter("params");
 
-        request.setAttribute("movies", movies);
+        if (params == null || params.equals("lista")) {
+            List<Movies> movies = dao.getAll();
 
-        request.getRequestDispatcher("movies/index.jsp").forward(request, response);
+            request.setAttribute("movies", movies);
+
+            request.getRequestDispatcher("movies/index.jsp").forward(request, response);
+        }
     }
 }
