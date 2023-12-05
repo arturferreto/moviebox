@@ -1,5 +1,6 @@
 package com.ifrs.moviebox.controllers;
 
+import com.ifrs.moviebox.dao.GenreDAO;
 import com.ifrs.moviebox.dao.MovieDAO;
 import com.ifrs.moviebox.models.Movies;
 import jakarta.servlet.ServletException;
@@ -22,12 +23,66 @@ public class MovieController extends HttpServlet {
 
         String params = request.getParameter("params");
 
-        if (params == null || params.equals("lista")) {
+        if (params == null || params.equals("buscar-todos")) {
             List<Movies> movies = dao.getAll();
 
             request.setAttribute("movies", movies);
 
             request.getRequestDispatcher("movies/index.jsp").forward(request, response);
+
+            return;
         }
+
+        if (params.equals("criar")) {
+            request.getRequestDispatcher("movies/create.jsp").forward(request, response);
+        }
+
+        if (params.equals("inserir")) {
+            Movies movie = new Movies();
+            movie.setName(request.getParameter("name"));
+            movie.setGenresByGenreId(new GenreDAO().getById(Integer.parseInt(request.getParameter("genreId"))));
+            movie.setWatchlist((byte) Integer.parseInt(request.getParameter("watchlist")));
+
+            dao.create(movie);
+
+            response.sendRedirect("filmes");
+        }
+
+        if (params.equals("editar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Movies movie = dao.getById(id);
+
+            request.setAttribute("movie", movie);
+
+            request.getRequestDispatcher("movies/edit.jsp").forward(request, response);
+        }
+
+        if (params.equals("atualizar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Movies movie = dao.getById(id);
+            movie.setName(request.getParameter("name"));
+            movie.setGenresByGenreId(new GenreDAO().getById(Integer.parseInt(request.getParameter("genreId"))));
+            movie.setWatchlist((byte) Integer.parseInt(request.getParameter("watchlist")));
+
+            dao.update(movie);
+
+            response.sendRedirect("filmes");
+        }
+
+        if (params.equals("deletar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Movies movie = dao.getById(id);
+
+            dao.delete(movie);
+
+            response.sendRedirect("filmes");
+        }
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }
