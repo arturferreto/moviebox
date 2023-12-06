@@ -1,0 +1,11 @@
+{
+  "name": "moviebox",
+  "version": "1.0.0",
+  "scripts": {
+    "watch" : "npx tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css --watch",
+    "build" : "npx tailwindcss -i ./src/main/webapp/css/input.css -o ./src/main/webapp/css/output.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.6"
+  }
+}
