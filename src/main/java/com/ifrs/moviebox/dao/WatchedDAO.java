@@ -40,4 +40,12 @@ public class WatchedDAO {
         em.remove(watched);
         em.getTransaction().commit();
     }
+
+    public void deleteByMovieId(long movieId) {
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Watched w WHERE w.moviesByMovieId.id = :movieId")
+                .setParameter("movieId", movieId)
+                .executeUpdate();
+        em.getTransaction().commit();
+    }
 }

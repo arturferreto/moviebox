@@ -11,31 +11,33 @@
 </head>
 <body>
   <h1>Moviebox - Review de filmes</h1>
-  <h2>Lista de filmes</h2>
+  <h2>Lista de filmes assistidos</h2>
   <table>
     <thead>
       <tr>
-        <th>Nome</th>
+        <th>Filme</th>
         <th>Gênero</th>
-        <th>Watchlist</th>
-        <th>Ações</th>
+        <th>Avaliação</th>
+        <th>Comentário</th>
+        <th>Favorito</th>
       </tr>
     </thead>
     <tbody>
-      <c:forEach items="${movies}" var="movie">
+      <c:forEach items="${watchedes}" var="watched">
         <tr>
-          <td><c:out value="${movie.name}"/></td>
-          <td><c:out value="${movie.genresByGenreId.description}"/></td>
-          <c:if test="${movie.watchlist == 1}">
+          <td><c:out value="${watched.moviesByMovieId.name}"/></td>
+          <td><c:out value="${watched.moviesByMovieId.genresByGenreId.description}"/></td>
+          <td><c:out value="${watched.rating}"/></td>
+          <td><c:out value="${watched.remark}"/></td>
+          <c:if test="${watched.favorite == 1}">
             <td>Sim</td>
           </c:if>
-          <c:if test="${movie.watchlist == 0}">
+          <c:if test="${watched.favorite == 0}">
             <td>Não</td>
           </c:if>
             <td>
-              <a href="/moviebox_war_exploded/assistidos?params=criar&id=${movie.id}">Assistir</a>
-              <a href="?params=editar&id=${movie.id}">Editar</a>
-              <a href="?params=deletar&id=${movie.id}">Excluir</a>
+                <a href="?params=editar&id=${watched.id}">Editar</a>
+                <a href="?params=deletar&id=${watched.id}">Excluir</a>
             </td>
         </tr>
       </c:forEach>
@@ -44,9 +46,6 @@
 
   <br><br>
 
-  <ul>
-    <li><a href="?params=criar">Adicionar um filme</a></li>
-    <li><a href="/moviebox_war_exploded/assistidos">Visualizar Assistidos</a></li>
-  </ul>
+  <a href="/moviebox_war_exploded/filmes">Visualizar filmes</a>
 </body>
 </html>

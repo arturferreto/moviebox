@@ -2,6 +2,7 @@ package com.ifrs.moviebox.controllers;
 
 import com.ifrs.moviebox.dao.GenreDAO;
 import com.ifrs.moviebox.dao.MovieDAO;
+import com.ifrs.moviebox.dao.WatchedDAO;
 import com.ifrs.moviebox.models.Movies;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -99,6 +100,9 @@ public class MovieController extends HttpServlet {
 
             MovieDAO dao = new MovieDAO();
             Movies movie = dao.getById(id);
+
+            WatchedDAO watchedDAO = new WatchedDAO();
+            watchedDAO.deleteByMovieId(id);
 
             dao.delete(movie);
 

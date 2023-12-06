@@ -11,6 +11,9 @@
 <body>
     <h1><%= "Hello World!" %></h1> <br/>
 
-    <a href="/moviebox_war_exploded/filmes">Filmes</a>
+    <ul>
+        <li><a href="/moviebox_war_exploded/filmes">Filmes</a></li>
+        <li><a href="/moviebox_war_exploded/assistidos">Assistidos</a></li>
+    </ul>
 </body>
 </html>

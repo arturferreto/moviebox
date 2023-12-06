@@ -26,7 +26,7 @@
         <input type="checkbox" id="watchlist" name="watchlist" value="watchlist" <c:if test="${movie.watchlist == 1}">checked</c:if>>
         <label for="watchlist">Adicionar na Watchlist</label> <br><br>
 
-        <input type="submit" value="CADASTRAR">
+        <input type="submit" value="EDITAR">
         <input type="hidden" name="params" value="atualizar">
         <input type="hidden" name="id" value="${movie.id}">
     </form>
