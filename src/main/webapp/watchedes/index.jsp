@@ -46,6 +46,6 @@
 
   <br><br>
 
-  <a href="/moviebox_war_exploded/filmes">Visualizar filmes</a>
+  <a href="//filmes">Visualizar filmes</a>
 </body>
 </html>

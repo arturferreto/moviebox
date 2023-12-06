@@ -6,14 +6,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/output.css"/>
     <title>Moviebox - Review de filmes</title>
 </head>
 <body>
-    <h1><%= "Hello World!" %></h1> <br/>
+<header class="flex justify-between items-center w-full px-4 py-2 bg-slate-900 text-slate-100">
+    <h1 class="font-bold text-xl"><%= "Movie Box!" %></h1>
+    <nav>
+        <ul class="flex space-x-2">
+            <li><a class="px-2 py-1 rounded-md border border-slate-700 text-slate-200" href="/filmes">Filmes</a></li>
+            <li><a class="px-2 py-1 rounded-md border border-slate-700 text-slate-200" href="/assistidos">Assistidos</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <ul>
-        <li><a href="/moviebox_war_exploded/filmes">Filmes</a></li>
-        <li><a href="/moviebox_war_exploded/assistidos">Assistidos</a></li>
-    </ul>
+
+
 </body>
 </html>
